@@ -36,7 +36,8 @@ pipeline{
                         echo "${ j_randomStrings.get(i) }"
                     }
 
-            
+                }
+            }
         }
     }
 }
