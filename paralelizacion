@@ -1,0 +1,21 @@
+pipeline{
+    agent any
+    stages{
+    ...
+      stage("Paralelización"){
+            steps{
+                parallel(
+                    a: {
+                        echo "Tarea a"
+                    },
+                    b: {
+                        echo "Tarea b"
+                    },
+                    c: {
+                        echo "Tarea c"
+                    }
+                )
+            }
+        }
+    }
+}
