@@ -1,0 +1,18 @@
+pipeline{
+    agent any
+    stages{
+    stage("DIR"){
+            steps{
+                script{
+                    sh "pwd"
+                    echo "${ WORKSPACE }"
+                    sh "mkdir nueva-ruta"
+                    dir("mkdir nueva-ruta")
+                    {
+                      sh "pwd"
+                    }
+                }
+            }
+        }
+    }
+}
