@@ -1,0 +1,20 @@
+pipeline{
+    agent any
+    environment {
+        ENV1 = 3.141592653
+    }
+    stages{
+    ...
+      stage("Variables de entorno"){
+            environment {
+                ENV = 12450
+            }
+            steps{
+                script{
+                    echo "Cualquier stage puede imprimir esta variable ${ ENV1 }"
+                    echo "Solo el stage \"Variables de entorno\" puede imprimir la variable ${ ENV2 } "
+                }
+            }
+        }
+    }
+}
