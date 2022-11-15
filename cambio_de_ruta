@@ -6,8 +6,8 @@ pipeline{
                 script{
                     sh "pwd"
                     echo "${ WORKSPACE }"
-                    sh "mkdir nueva-ruta"
-                    dir("nueva-ruta")
+                    sh "mkdir new-ruta"
+                    dir("new-ruta")
                     {
                       sh "pwd"
                     }
