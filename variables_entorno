@@ -6,7 +6,7 @@ pipeline{
     stages{
       stage("Variables de entorno"){
             environment {
-                ENV = 12450
+                ENV2 = 12450
             }
             steps{
                 script{
