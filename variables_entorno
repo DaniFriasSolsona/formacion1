@@ -4,7 +4,6 @@ pipeline{
         ENV1 = 3.141592653
     }
     stages{
-    ...
       stage("Variables de entorno"){
             environment {
                 ENV = 12450
