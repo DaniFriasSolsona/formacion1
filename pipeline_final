@@ -1,0 +1,48 @@
+@Library('libreria')_
+
+def String TYPE = "java"
+def String PATH = "formacion-jenkins-caso-de-uso-real"
+def String GH_URL = "https://github.com/MartiMarch/${PATH}.git"
+
+pipeline{
+    agent any
+    stages{
+        stage("Git"){
+            steps{
+                script{
+                    git.clone(this, GH_URL)
+                }
+            }
+        }
+        stage("Maven"){
+            steps{
+                script{
+                    dir(PATH){
+                        maven.commonPhases(this)
+                    }
+                }
+            }
+        }
+        stage("Docker"){
+            steps{
+                script{
+                    docker.prune(this)
+                    docker.createDockerfile(this, TYPE)
+                    docker.printDockerfile(this)
+                    docker.build(this, TYPE)
+                }
+            }
+        }
+        stage("Helm"){
+            steps{
+                script{
+                    dir("${PATH}/helm"){
+                        helm.template(this)
+                        helm.lint(this)
+                        helm.deploy(this)
+                    }
+                }
+            }
+        }
+    }
+}
